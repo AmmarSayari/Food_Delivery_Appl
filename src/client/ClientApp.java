@@ -16,12 +16,30 @@ public class ClientApp {
         String restN = scan.nextLine();
 
         RestaurantFactory restaurantFactory = new RestaurantFactory();
-
         Restaurant restaurant = restaurantFactory.choseRestaurant(restN);
 
+
+        Order order = new Order(restaurant.getMenuList());
+
+
         restaurant.displayReMe();
+        order.choseOrder();
 
+        String ordTol = "";
+        while (true) {
+            System.out.println("to show your full list enter (List)");
+            System.out.println("to add order enter (o)");
+            ordTol = scan.nextLine();
+            order.choseOrder();
+            if(ordTol.equalsIgnoreCase("list"))
+            order.showFullOrderList();
+//            for (String gg :
+//                    order.getOrderList()) {
+//                System.out.println(gg);
+//            }
 
+            //if(scan.nextLine().equalsIgnoreCase("done")) break;
+        }
 
 
         //restaurant = restaurantFactory.choseRestaurant(restN);

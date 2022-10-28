@@ -27,9 +27,12 @@ public abstract class Restaurant {
     public void displayReMe(){
 
         System.out.println(getName());
+        int s = 1;
         //menuList = getMenuList();
         for (String x : menuList) {
-            System.out.println(x);
+
+            System.out.println(s+"- "+ x);
+            s++;
         }
 
     }

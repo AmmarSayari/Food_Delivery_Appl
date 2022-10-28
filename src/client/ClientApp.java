@@ -33,8 +33,11 @@ public class ClientApp {
             order.choseOrder();
             if(ordTol.equalsIgnoreCase("list"))
             order.showFullOrderList();
+
+
+
 //            for (String gg :
-//                    order.getOrderList()) {
+//                    order.getOrderList()) {.
 //                System.out.println(gg);
 //            }
 

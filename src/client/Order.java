@@ -34,14 +34,22 @@ public class Order {
         String customerReader = scan.nextLine();
 
         int tol = Integer.parseInt(customerReader) - 1;
+        System.out.println("how manny:  ");
+        int numT = scan.nextInt();
+        for (int i = 0; i < numT ; i++) {
+            orderList.add(menuList.get(tol));
+        }
+        //orderList.add(menuList.get(tol));
+        System.out.println("this order add to your list:   "+menuList.get(tol)+"-> "+numT);
 
-        orderList.add(menuList.get(tol));
-        System.out.println("this order add to your list:   "+menuList.get(tol));
 
 
-        //if(customerReader.equalsIgnoreCase("1")){
 
-           // orderList.add(menuList.get())
+
+
+          //if(customerReader.equalsIgnoreCase("1")){
+
+        // orderList.add(menuList.get())
 
 
 //            for (String x : menuList) {
@@ -57,6 +65,18 @@ public class Order {
         for (String gg :
                 orderList) {
             System.out.println(gg);
+        }
+    }
+
+    public void showFullPrice(){
+
+        int tolss = 0;
+        for (int i = 0; i < orderList.size() ; i++) {
+
+
+            orderList.get(tolss);
+
+            tolss++;
         }
     }
 

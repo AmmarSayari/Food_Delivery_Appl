@@ -2,6 +2,7 @@ package client;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Order {
 
@@ -70,14 +71,23 @@ public class Order {
 
     public void showFullPrice(){
 
-        int tolss = 0;
-        for (int i = 0; i < orderList.size() ; i++) {
 
+        int total = 0;
+        for (String s : orderList) {
 
-            orderList.get(tolss);
+            StringTokenizer tok = new StringTokenizer(s);
+            String xxx = "";
+            while (tok.hasMoreTokens()) {
+                xxx = tok.nextToken(" ");
+                //System.out.println(xxx);
+                if (xxx.matches("[0-9]+")) {
+                    //System.out.println(xxx);
+                    total += Integer.parseInt(xxx);
+                }
+            }
 
-            tolss++;
         }
+        System.out.println("this is total:  "+total);
     }
 
      //public ArrayList<String> customerOrderList(){}

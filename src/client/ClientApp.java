@@ -23,17 +23,19 @@ public class ClientApp {
 
 
         restaurant.displayReMe();
-        order.choseOrder();
+        //order.choseOrder();
 
         String ordTol = "";
         while (true) {
             System.out.println("to show your full list enter (List)");
             System.out.println("to add order enter (o)");
             ordTol = scan.nextLine();
+            if(ordTol.equalsIgnoreCase("o"))
             order.choseOrder();
             if(ordTol.equalsIgnoreCase("list"))
             order.showFullOrderList();
-
+            if (ordTol.equalsIgnoreCase("total"))
+                order.showFullPrice();
 
 
 //            for (String gg :

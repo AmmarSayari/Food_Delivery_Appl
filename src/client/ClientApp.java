@@ -7,65 +7,46 @@ import java.util.Scanner;
 public class ClientApp {
     public static void main(String[] args) throws IOException {
 
-
-
         Scanner scan = new Scanner(System.in);
-        System.out.println("welcome: ");
-        System.out.println("chose one of the following:\n1. albaik\n2. kfc\n3. macdonalds");
 
-        String restN = scan.nextLine();
+        //main menu
+        String ordTol = "";
+        while (true){
+
+            if(ordTol.equalsIgnoreCase("f")||ordTol.equalsIgnoreCase("exit"))break;
+
+            System.out.println("welcome to main menu: ");
+            System.out.println("chose one of the following:\n1. albaik\n2. kfc\n3. macdonalds");
+            System.out.println("if you want to quit write (exit) ");
+
+            String restN = scan.nextLine();
+            if(restN.equalsIgnoreCase("exit"))break;
 
         RestaurantFactory restaurantFactory = new RestaurantFactory();
         Restaurant restaurant = restaurantFactory.choseRestaurant(restN);
 
-
         Order order = new Order(restaurant.getMenuList());
 
-
         restaurant.displayReMe();
-        //order.choseOrder();
 
-        String ordTol = "";
         while (true) {
             System.out.println("to show your full list enter (List)");
             System.out.println("to add order enter (o)");
+            System.out.println("to back to the main menu type (back): ");
+            System.out.println("finish order (f)");
+            System.out.println("to exit the App (exit)");
             ordTol = scan.nextLine();
-            if(ordTol.equalsIgnoreCase("o"))
-            order.choseOrder();
-            if(ordTol.equalsIgnoreCase("list"))
-            order.showFullOrderList();
+            if (ordTol.equalsIgnoreCase("back") ||ordTol.equalsIgnoreCase("f")||ordTol.equalsIgnoreCase("exit"))break;
+
+            if (ordTol.equalsIgnoreCase("o"))
+                order.choseOrder();
+            if (ordTol.equalsIgnoreCase("list"))
+                order.showFullOrderList();
             if (ordTol.equalsIgnoreCase("total"))
                 order.showFullPrice();
 
-
-//            for (String gg :
-//                    order.getOrderList()) {.
-//                System.out.println(gg);
-//            }
-
-            //if(scan.nextLine().equalsIgnoreCase("done")) break;
         }
-
-
-        //restaurant = restaurantFactory.choseRestaurant(restN);
-
-        //System.out.println("chose to order");
-
-
-
-//        Restaurants res = new Restaurants(restN);
-//        String[] menS = res.getMenuList();
-//        for (String men : menS) {
-//            if(men != null)
-//            System.out.println(men);
-//        }
-
-
-
-
-
-
-
+        }
 
 
 

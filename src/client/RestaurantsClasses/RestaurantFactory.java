@@ -1,4 +1,4 @@
-package client;
+package client.RestaurantsClasses;
 
 public class RestaurantFactory {
 

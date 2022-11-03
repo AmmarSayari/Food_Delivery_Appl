@@ -15,8 +15,9 @@ public class App {
         while (true){
             Socket socket = server.accept();
 
-            new Sender(socket).start();
-            new Receiver(socket).start();
+            //new Sender(socket).start();
+            new Receiver(socket).receiveOrderList();
+            //new Receiver(socket).start();
         }
 
     }

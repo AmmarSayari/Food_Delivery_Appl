@@ -1,13 +1,19 @@
 package client;
 
 
+import client.RestaurantsClasses.Restaurant;
+import client.RestaurantsClasses.RestaurantFactory;
+
 import java.io.*;
+import java.net.Socket;
 import java.util.Scanner;
 
 public class ClientApp {
     public static void main(String[] args) throws IOException {
 
         Scanner scan = new Scanner(System.in);
+        Socket socket = new Socket("localhost", 1000);
+
 
         //main menu
         String ordTol = "";
@@ -36,7 +42,7 @@ public class ClientApp {
             System.out.println("finish order (f)");
             System.out.println("to exit the App (exit)");
             ordTol = scan.nextLine();
-            if (ordTol.equalsIgnoreCase("back") ||ordTol.equalsIgnoreCase("f")||ordTol.equalsIgnoreCase("exit"))break;
+            if (ordTol.equalsIgnoreCase("back") ||ordTol.equalsIgnoreCase("exit"))break;
 
             if (ordTol.equalsIgnoreCase("o"))
                 order.choseOrder();
@@ -44,6 +50,11 @@ public class ClientApp {
                 order.showFullOrderList();
             if (ordTol.equalsIgnoreCase("total"))
                 order.showFullPrice();
+            if (ordTol.equalsIgnoreCase("f")){
+                new Sender(socket).sendOrderList(order.getOrderList());
+                break;
+            }
+
 
         }
         }
@@ -51,28 +62,8 @@ public class ClientApp {
 
 
 
-//        BufferedReader reader = null;
-//        reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(
-//                "E:\\food_delivery_App\\src\\Restuarants"))));
 //
-//        Restaurants restaurants = new Restaurants();
-//
-//        String rest = "";
-//        while ((rest = reader.readLine()) != null){
-//
-//            //restaurants = new Restaurants(rest);
-//            System.out.println(rest);
-//
-//
-//        }
-//        System.out.println(restaurants.getName());
-//        System.out.println(restaurants.getName());
-//        System.out.println(restaurants.getName());
-
-
-//        Socket socket = new Socket("localhost", 1000);
-//
-//        new Sender(socket).start();
+      //  new Sender(socket).sendOrderList();
 //        new Receiver(socket).start();
     }
 }

@@ -1,4 +1,5 @@
-package client;
+package client.RestaurantsClasses;
+
 
 import java.io.*;
 import java.util.ArrayList;

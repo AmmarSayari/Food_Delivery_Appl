@@ -24,11 +24,6 @@ public class Sender extends Thread {
             OutputStream out = socket.getOutputStream();
             PrintWriter writer = new PrintWriter(out,true);
 
-//            writer.println("choose one of the following restaurant: ");
-//            writer.print("1. al-baik");
-//            writer.print("2. Mac");
-//            writer.print("3. KFC");
-
 
             while (true){
                 Scanner keyBoard = new Scanner(System.in);

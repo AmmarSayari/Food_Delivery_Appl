@@ -1,22 +1,42 @@
 package client;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Sender {
 
-    Socket socket;
+        final DataInputStream inputStream;
+        final DataOutputStream outputStream;
+        final Socket socket;
 
-    public Sender(Socket socket){
+    public Sender(Socket socket, DataInputStream inputStream, DataOutputStream outputStream) {
         this.socket = socket;
+        this.inputStream = inputStream;
+        this.outputStream = outputStream;
     }
 
 
+    public void contactServer() throws IOException {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("user name:  ");
+        String userName = scan.nextLine();
+        outputStream.writeUTF(userName);
+
+        //System.out.println();
+
+        System.out.print("password:  ");
+        String pass = scan.nextLine();
+        outputStream.writeUTF(pass);
+
+        outputStream.flush();
+
+        //response
+        System.out.println("server response:  "+inputStream.readUTF());
+
+    }
 
 
 
@@ -28,6 +48,8 @@ public class Sender {
         }
         catch (IOException e){e.printStackTrace();}
     }
+
+
 
 
 

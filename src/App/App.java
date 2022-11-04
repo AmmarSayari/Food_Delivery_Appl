@@ -1,9 +1,6 @@
 package App;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -23,13 +20,13 @@ public class App {
                 socket = server.accept();
                 System.out.println("A new connection identified : " + socket);
 
-                DataInputStream inputStream = new DataInputStream(socket.getInputStream());
-                DataOutputStream outPutStream = new DataOutputStream(socket.getOutputStream());
-                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintWriter writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+                //ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
 
                 System.out.println("Thread assigned");
 
-                Thread tThread = new ClientHandler(socket, inputStream , outPutStream, objectInputStream);
+                Thread tThread = new ClientHandler(socket, reader , writer);
 
                 tThread.start();
 

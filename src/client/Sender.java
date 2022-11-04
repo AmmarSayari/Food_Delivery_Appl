@@ -7,35 +7,39 @@ import java.util.Scanner;
 
 public class Sender {
 
-        final DataInputStream inputStream;
-        final DataOutputStream outputStream;
-        final Socket socket;
 
-    public Sender(Socket socket, DataInputStream inputStream, DataOutputStream outputStream) {
+         BufferedReader reader;
+         PrintWriter writer;
+         Socket socket;
+
+    public Sender(Socket socket, BufferedReader reader, PrintWriter writer) {
         this.socket = socket;
-        this.inputStream = inputStream;
-        this.outputStream = outputStream;
+        this.reader = reader;
+        this.writer = writer;
     }
 
 
     public void contactServer() throws IOException {
         Scanner scan = new Scanner(System.in);
 
+        String f = reader.readLine();
+        System.out.println(f);
         System.out.print("user name:  ");
         String userName = scan.nextLine();
-        outputStream.writeUTF(userName);
+        writer.println(userName);
 
         //System.out.println();
 
         System.out.print("password:  ");
         String pass = scan.nextLine();
-        outputStream.writeUTF(pass);
+        writer.println(pass);
 
-        outputStream.flush();
+        writer.flush();
 
+        String resp = reader.readLine();
         //response
-        System.out.println("server response:  "+inputStream.readUTF());
-
+        System.out.println("server response:  "+resp);
+        //writer.flush();
     }
 
 

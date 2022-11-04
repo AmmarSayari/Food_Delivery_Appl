@@ -13,8 +13,8 @@ public class ClientApp {
 
         Scanner scan = new Scanner(System.in);
         Socket socket = new Socket("localhost", 1000);
-        DataInputStream inputStream = new DataInputStream(socket.getInputStream());
-        DataOutputStream outPutStream = new DataOutputStream(socket.getOutputStream());
+        BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 
 
         //main menu
@@ -53,7 +53,7 @@ public class ClientApp {
             if (ordTol.equalsIgnoreCase("total"))
                 order.showFullPrice();
             if (ordTol.equalsIgnoreCase("f")){
-                new Sender(socket,inputStream,outPutStream).contactServer();
+                new Sender(socket,reader,writer).contactServer();
                 break;
             }
 

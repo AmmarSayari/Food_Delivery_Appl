@@ -3,6 +3,7 @@ package App;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 
 public class App {
 
@@ -11,6 +12,14 @@ public class App {
         ServerSocket server = new ServerSocket(1000);
 
         System.out.println("server waiting for connection...");
+
+        db ddd = new db();
+        ddd.DBconnection();
+        try {
+            ddd.Sign_up("ahmed","u2","0909","anozlah");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         while (true){
 

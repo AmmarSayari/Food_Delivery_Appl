@@ -15,6 +15,7 @@ public class ClientApp {
         Socket socket = new Socket("localhost", 1000);
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
 
         //main menu
@@ -35,38 +36,39 @@ public class ClientApp {
 
         Order order = new Order(restaurant.getMenuList());
 
-        restaurant.displayReMe();
 
-        Sender senD = new Sender(socket,reader,writer);
-            System.out.println("to show your full list enter (List)");
-            System.out.println("to add order enter (o)");
-            System.out.println("to back to the main menu type (back): ");
-            System.out.println("finish order (f)");
-            System.out.println("to exit the App (exit)");
-            ordTol = scan.nextLine();
-            if (ordTol.equalsIgnoreCase("back") ||ordTol.equalsIgnoreCase("exit"))break;
+            while (true) {
 
-            if (ordTol.equalsIgnoreCase("o"))
-                order.choseOrder();
-            if (ordTol.equalsIgnoreCase("list"))
-                order.showFullOrderList();
-            if (ordTol.equalsIgnoreCase("total"))
-                order.showFullPrice();
-            if (ordTol.equalsIgnoreCase("f")){
-                senD.contactServer();
-                senD.sendOrderList(order.getOrderList());
-                break;
+                restaurant.displayReMe();
+//            System.out.println("to show your full list enter (List)");
+////            System.out.println("to add order enter (o)");
+////            System.out.println("to back to the main menu type (back): ");
+////            System.out.println("finish order (f)");
+////            System.out.println("to exit the App (exit)");
+                System.out.println("(L)OrderList\t(O)Add Order\t(t)Total\t(B)Back\t(F)Finish Order\tExit");
+
+
+                ordTol = scan.nextLine();
+                if (ordTol.equalsIgnoreCase("b") || ordTol.equalsIgnoreCase("exit")) break;
+                if (ordTol.equalsIgnoreCase("o"))
+                    order.choseOrder();
+                if (ordTol.equalsIgnoreCase("l"))
+                    order.showFullOrderList();
+                if (ordTol.equalsIgnoreCase("t"))
+                    order.showFullPrice();
+                if (ordTol.equalsIgnoreCase("f")) {
+                    Sender senD = new Sender(socket, reader, writer, objectOutputStream, order.getOrderList());
+                    senD.contactServer();
+
+                    break;
+                }
+
             }
-
-
-        }
         }
 
 
 
 
-//
-      //  new Sender(socket).sendOrderList();
-//        new Receiver(socket).start();
+        }
     }
 

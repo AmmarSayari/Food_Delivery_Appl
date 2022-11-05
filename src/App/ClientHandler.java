@@ -10,17 +10,17 @@ class ClientHandler extends Thread {
      BufferedReader reader;
      PrintWriter writer;
      Socket socket;
-    //final ObjectInputStream objectInputStream;
+    ObjectInputStream objectInputStream;
     private ArrayList<String> list = new ArrayList<String>();
 
 
     // Constructor
-    public ClientHandler(Socket socket, BufferedReader inputStream, PrintWriter outputStream,db dataBase) {
+    public ClientHandler(Socket socket, BufferedReader inputStream, PrintWriter outputStream,db dataBase,ObjectInputStream objectInputStream) {
         this.socket = socket;
         this.reader = inputStream;
         this.writer = outputStream;
         this.dataBase =dataBase;
-        //this.objectInputStream = objectInputStream;
+        this.objectInputStream = objectInputStream;
     }
 
     @Override
@@ -35,11 +35,16 @@ class ClientHandler extends Thread {
 
             if (sL.equalsIgnoreCase("S")){
                 signUpDB();
+                logIn();
+                recOrderList();
             }else if (sL.equalsIgnoreCase("l")) {
                 logIn();
+                recOrderList();
             }
-            //writer.println("please log in2");
-        } catch (IOException | InterruptedException | SQLException e) {
+
+            objectInputStream.close();
+
+        } catch (IOException | InterruptedException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -88,7 +93,18 @@ class ClientHandler extends Thread {
         }
         //Thread.sleep(1000);
         writer.flush();
-        writer.close();
+       // writer.close();
+    }
+
+    public void recOrderList() throws IOException, ClassNotFoundException {
+        Object object = objectInputStream.readObject();
+//        objectInputStream.close();
+        list = (ArrayList<String>) object;
+        for (String in :
+                list) {
+            System.out.println(in);
+        }
+
     }
 
 

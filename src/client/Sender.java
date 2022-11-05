@@ -11,11 +11,15 @@ public class Sender {
          BufferedReader reader;
          PrintWriter writer;
          Socket socket;
+         ObjectOutputStream objectOutputStream;
+         ArrayList<String> ordList;
 
-    public Sender(Socket socket, BufferedReader reader, PrintWriter writer) {
+    public Sender(Socket socket, BufferedReader reader, PrintWriter writer,ObjectOutputStream objectOutputStream,ArrayList<String> ordList) {
         this.socket = socket;
         this.reader = reader;
         this.writer = writer;
+        this.objectOutputStream = objectOutputStream;
+        this.ordList = ordList;
     }
 
 
@@ -29,12 +33,17 @@ public class Sender {
         writer.flush();
         if(client.equalsIgnoreCase("S")){
             signUp();
+            logInServer();
+            sendOrderList();
         }
         else if(client.equalsIgnoreCase("L")){
             logInServer();
+            sendOrderList();
 
         }
 
+        objectOutputStream.flush();
+        objectOutputStream.close();
 
 
 
@@ -92,12 +101,12 @@ public class Sender {
 
 
 
-    public void sendOrderList(ArrayList<String> oList){
-        try {
-            ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-            objectOutput.writeObject(oList);
-        }
-        catch (IOException e){e.printStackTrace();}
+    public void sendOrderList() throws IOException {
+
+        objectOutputStream.writeObject(ordList);
+//        objectOutputStream.flush();
+//        objectOutputStream.close();
+
     }
 
 

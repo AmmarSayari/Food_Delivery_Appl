@@ -12,8 +12,7 @@ public class App {
         ServerSocket server = new ServerSocket(1000);
 
         System.out.println("server waiting for connection...");
-//        db con = new db();
-//        con.DBconnection();
+
 
 
         while (true){
@@ -26,12 +25,12 @@ public class App {
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 PrintWriter writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-                //ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 db con = new db();
                 con.DBconnection();
                 System.out.println("Thread assigned");
 
-                Thread tThread = new ClientHandler(socket, reader , writer,con);
+                Thread tThread = new ClientHandler(socket, reader , writer,con,objectInputStream);
 
                 tThread.start();
 

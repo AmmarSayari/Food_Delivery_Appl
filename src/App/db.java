@@ -9,7 +9,8 @@ public class db {
 
     private Connection con;
 
-    String UserName , Password , phoneNumber , address;
+    String DeliveryName , deliveryPhoneNumber;
+
 
 
 
@@ -69,7 +70,10 @@ public class db {
 
 
 
+    public void deliverDB(){
 
+        
+    }
 
 
 }

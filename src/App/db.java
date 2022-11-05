@@ -12,11 +12,6 @@ public class db {
     String UserName , Password , phoneNumber , address;
 
 
-  /*   public DB(String userName, String password) {
-        UserName = userName;
-         Password = password;
-
-  */
 
     public  void DBconnection(){
 
@@ -25,8 +20,8 @@ public class db {
 
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fooddeliveryapp", "root", "passw0rd");
-                Statement test = con.createStatement();
-                ResultSet rs = test.executeQuery("SELECT * FROM signup");
+                //Statement test = con.createStatement();
+                //ResultSet rs = test.executeQuery("SELECT * FROM signup");
                 //while (rs.next()){
                  //   System.out.println(rs.getString(1));
                // }
@@ -40,7 +35,7 @@ public class db {
 
     }
 
-    public void Sign_up(String User_name , String Password , String phoneNumber, String address) throws SQLException{
+    public boolean Sign_up(String User_name , String Password , String phoneNumber, String address) throws SQLException{
 
 
         PreparedStatement pr = con.prepareStatement("Insert into signup(`Username`,`Passwordd`,`phoneNumber`,`Address`) VALUES (?,?,?,?)");
@@ -51,21 +46,29 @@ public class db {
         pr.setString(4, address);
         int n = pr.executeUpdate();
         System.out.println(n);
+        if(n == 1) return true;
+        else if(n == 2) return false;
+
         con.close();
+        return false;
     }
 
 
 
+    public boolean loginDBCheck(String User_name , String Password) throws SQLException{
 
 
+        PreparedStatement pr = con.prepareStatement("Select * from SignUp where Username LIKE ? AND Passwordd LIKE ?");
 
+        pr.setString(1, User_name);
+        pr.setString(2, Password);
+        ResultSet rs = pr.executeQuery();
 
-
-
-
-    public void test(){
-
+        return rs.next();
     }
+
+
+
 
 
 

@@ -2,10 +2,11 @@ package App;
 
 import java.io.*;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 class ClientHandler extends Thread {
-
+     db dataBase;
      BufferedReader reader;
      PrintWriter writer;
      Socket socket;
@@ -14,33 +15,65 @@ class ClientHandler extends Thread {
 
 
     // Constructor
-    public ClientHandler(Socket socket, BufferedReader inputStream, PrintWriter outputStream) {
+    public ClientHandler(Socket socket, BufferedReader inputStream, PrintWriter outputStream,db dataBase) {
         this.socket = socket;
         this.reader = inputStream;
         this.writer = outputStream;
+        this.dataBase =dataBase;
         //this.objectInputStream = objectInputStream;
     }
 
     @Override
     public void run() {
 
-
         try {
 
-            writer.println("please log in");
+            writer.println("(S)SignUp\t(L)LogIn");
             writer.flush();
+            String sL = reader.readLine();
+            //writer.flush();
 
-            logIn();
-
+            if (sL.equalsIgnoreCase("S")){
+                signUpDB();
+            }else if (sL.equalsIgnoreCase("l")) {
+                logIn();
+            }
             //writer.println("please log in2");
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException | InterruptedException | SQLException e) {
             e.printStackTrace();
         }
 
 
     }
 
-    public void logIn() throws IOException, InterruptedException {
+    public void signUpDB() throws IOException {
+
+        String userName = reader.readLine();
+        System.out.println("username  " + userName);
+        String password = reader.readLine();
+        System.out.println("password  " + password);
+        String phoneNum = reader.readLine();
+        System.out.println("PhoneNumber  " + phoneNum);
+        String address = reader.readLine();
+        System.out.println("Address  " + address);
+
+        boolean xtx = false;
+        try {
+           xtx = dataBase.Sign_up(userName,password,phoneNum,address);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (xtx){
+            writer.println("done  "+ userName);
+        }else {
+            writer.println("signUp failed  ");
+        }
+        writer.flush();
+        writer.close();
+    }
+
+    public void logIn() throws IOException, InterruptedException, SQLException {
 
         String userName = reader.readLine();
         System.out.println("username  " + userName);
@@ -48,7 +81,7 @@ class ClientHandler extends Thread {
         System.out.println("password  " + password);
 
 
-        if (userName.equals("ammar") && password.equals("pass")){
+        if (dataBase.loginDBCheck(userName,password)){
             writer.println("done"+ userName);
         }else {
             writer.println("Login failed  ");
@@ -57,4 +90,6 @@ class ClientHandler extends Thread {
         writer.flush();
         writer.close();
     }
+
+
 }

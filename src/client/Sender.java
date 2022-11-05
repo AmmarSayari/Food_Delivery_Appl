@@ -24,6 +24,52 @@ public class Sender {
 
         String f = reader.readLine();
         System.out.println(f);
+        String client = scan.nextLine();
+        writer.println(client);
+        writer.flush();
+        if(client.equalsIgnoreCase("S")){
+            signUp();
+        }
+        else if(client.equalsIgnoreCase("L")){
+            logInServer();
+
+        }
+
+
+
+
+    }
+
+
+    public void signUp()throws IOException{
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("user name:  ");
+        String userName = scan.nextLine();
+        writer.println(userName);
+
+        System.out.print("password:  ");
+        String pass = scan.nextLine();
+        writer.println(pass);
+
+        System.out.println("PhoneNumber  ");
+        String phoneNum = scan.nextLine();
+        writer.println(phoneNum);
+
+        System.out.print("Address:  ");
+        String address = scan.nextLine();
+        writer.println(address);
+
+
+        writer.flush();
+        String resp = reader.readLine();
+        //response
+        System.out.println("server response:  "+resp);
+    }
+
+    public void logInServer() throws IOException {
+
+        Scanner scan = new Scanner(System.in);
         System.out.print("user name:  ");
         String userName = scan.nextLine();
         writer.println(userName);
@@ -40,6 +86,7 @@ public class Sender {
         //response
         System.out.println("server response:  "+resp);
         //writer.flush();
+
     }
 
 
@@ -54,41 +101,5 @@ public class Sender {
     }
 
 
-
-
-
-
-
-
-
-
-//
-//    @Override
-//    public void run(){
-//
-//    String line;
-//
-//        try {
-//            OutputStream out = socket.getOutputStream();
-//            PrintWriter writer = new PrintWriter(out,true);
-//
-//            while (true){
-//                Scanner keyBoard = new Scanner(System.in);
-//                System.out.println("msg: ");
-//                line = keyBoard.nextLine();
-//
-//
-//                writer.println(line);
-//                if(line.equalsIgnoreCase("exit"))break;
-//
-//            }
-//
-//            socket.shutdownOutput();
-//
-//        } catch (IOException e) {
-//            //e.printStackTrace();
-//        }
-//
-//    }
 
 }

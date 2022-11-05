@@ -37,7 +37,7 @@ public class ClientApp {
 
         restaurant.displayReMe();
 
-        while (true) {
+        Sender senD = new Sender(socket,reader,writer);
             System.out.println("to show your full list enter (List)");
             System.out.println("to add order enter (o)");
             System.out.println("to back to the main menu type (back): ");
@@ -53,7 +53,8 @@ public class ClientApp {
             if (ordTol.equalsIgnoreCase("total"))
                 order.showFullPrice();
             if (ordTol.equalsIgnoreCase("f")){
-                new Sender(socket,reader,writer).contactServer();
+                senD.contactServer();
+                senD.sendOrderList(order.getOrderList());
                 break;
             }
 
@@ -68,4 +69,4 @@ public class ClientApp {
       //  new Sender(socket).sendOrderList();
 //        new Receiver(socket).start();
     }
-}
+

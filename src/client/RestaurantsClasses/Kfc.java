@@ -12,7 +12,7 @@ public class Kfc extends Restaurant {
         setName("KFC");
         String tol = "";
         try {
-            BufferedReader reader = reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(
                     "E:\\food_delivery_App\\src\\Kfc menu"))));
             while ((tol = reader.readLine()) != null) {
 

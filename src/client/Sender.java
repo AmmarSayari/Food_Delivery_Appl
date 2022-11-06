@@ -83,7 +83,7 @@ public class Sender {
         String userName = scan.nextLine();
         writer.println(userName);
 
-        //System.out.println();
+
 
         System.out.print("password:  ");
         String pass = scan.nextLine();
@@ -92,9 +92,9 @@ public class Sender {
         writer.flush();
 
         String resp = reader.readLine();
-        //response
+
         System.out.println("server response:  "+resp);
-        //writer.flush();
+
 
     }
 
@@ -104,9 +104,9 @@ public class Sender {
     public void sendOrderList() throws IOException {
 
         objectOutputStream.writeObject(ordList);
-//        objectOutputStream.flush();
-//        objectOutputStream.close();
 
+        String ttt = reader.readLine();
+        System.out.println(ttt);
     }
 
 

@@ -11,7 +11,7 @@ public class AlBaik extends Restaurant {
         setName("Al-Baik");
         String tol = "";
         try {
-            BufferedReader reader = reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(
                     "E:\\food_delivery_App\\src\\Al-baik menu"))));
             while ((tol = reader.readLine()) != null) {
 

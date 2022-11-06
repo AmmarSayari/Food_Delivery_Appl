@@ -91,20 +91,22 @@ class ClientHandler extends Thread {
         }else {
             writer.println("Login failed  ");
         }
-        //Thread.sleep(1000);
+
         writer.flush();
-       // writer.close();
+
     }
 
-    public void recOrderList() throws IOException, ClassNotFoundException {
+    public void recOrderList() throws IOException, ClassNotFoundException, SQLException {
         Object object = objectInputStream.readObject();
-//        objectInputStream.close();
+
         list = (ArrayList<String>) object;
         for (String in :
                 list) {
             System.out.println(in);
         }
 
+        writer.println("driver information:   "+dataBase.deliverDB());
+        writer.flush();
     }
 
 

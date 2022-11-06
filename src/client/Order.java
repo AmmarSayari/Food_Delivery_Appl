@@ -40,24 +40,9 @@ public class Order {
         for (int i = 0; i < numT ; i++) {
             orderList.add(menuList.get(tol));
         }
-        //orderList.add(menuList.get(tol));
+
         System.out.println("this order add to your list:   "+menuList.get(tol)+"-> "+numT);
 
-
-
-
-
-
-          //if(customerReader.equalsIgnoreCase("1")){
-
-        // orderList.add(menuList.get())
-
-
-//            for (String x : menuList) {
-//
-//                System.out.println("- "+ x);
-//        }
-//        }
 
 
     }
@@ -79,9 +64,9 @@ public class Order {
             String xxx = "";
             while (tok.hasMoreTokens()) {
                 xxx = tok.nextToken(" ");
-                //System.out.println(xxx);
+
                 if (xxx.matches("[0-9]+")) {
-                    //System.out.println(xxx);
+
                     total += Integer.parseInt(xxx);
                 }
             }
@@ -90,5 +75,5 @@ public class Order {
         System.out.println("this is total:  "+total);
     }
 
-     //public ArrayList<String> customerOrderList(){}
+
 }

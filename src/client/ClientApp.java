@@ -40,11 +40,7 @@ public class ClientApp {
             while (true) {
 
                 restaurant.displayReMe();
-//            System.out.println("to show your full list enter (List)");
-////            System.out.println("to add order enter (o)");
-////            System.out.println("to back to the main menu type (back): ");
-////            System.out.println("finish order (f)");
-////            System.out.println("to exit the App (exit)");
+
                 System.out.println("(L)OrderList\t(O)Add Order\t(t)Total\t(B)Back\t(F)Finish Order\tExit");
 
 

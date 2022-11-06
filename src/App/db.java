@@ -9,7 +9,7 @@ public class db {
 
     private Connection con;
 
-    String DeliveryName , deliveryPhoneNumber;
+    String deliveryName , deliveryPhoneNumber;
 
 
 
@@ -21,11 +21,7 @@ public class db {
 
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fooddeliveryapp", "root", "passw0rd");
-                //Statement test = con.createStatement();
-                //ResultSet rs = test.executeQuery("SELECT * FROM signup");
-                //while (rs.next()){
-                 //   System.out.println(rs.getString(1));
-               // }
+
 
             }
         } catch (Exception e) {
@@ -70,9 +66,20 @@ public class db {
 
 
 
-    public void deliverDB(){
+    public String deliverDB() throws SQLException {
 
-        
+        PreparedStatement pr = con.prepareStatement("Select DeliveryName , phoneNumber from delivery Order by Rand() limit 1");
+
+        ResultSet rss = pr.executeQuery();
+        while (rss.next()){
+            deliveryName = rss.getString(1);
+            deliveryPhoneNumber = rss.getString(2);
+        }
+
+        String tol = deliveryName +"   "+ deliveryPhoneNumber;
+        System.out.println(tol);
+
+        return tol;
     }
 
 

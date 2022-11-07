@@ -55,7 +55,9 @@ public class ClientApp {
                 if (ordTol.equalsIgnoreCase("f")) {
                     Sender senD = new Sender(socket, reader, writer, objectOutputStream, order.getOrderList());
                     senD.contactServer();
-
+                    System.out.println("Thanks for using This Application ~~~ 3afya");
+                    order.showFullOrderList();
+                    order.showFullPrice();
                     break;
                 }
 

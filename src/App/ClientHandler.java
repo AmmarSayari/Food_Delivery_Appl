@@ -87,9 +87,11 @@ class ClientHandler extends Thread {
 
 
         if (dataBase.loginDBCheck(userName,password)){
-            writer.println("done"+ userName);
+            writer.println("done  "+ userName);
         }else {
-            writer.println("Login failed  ");
+            writer.println("Login failed");
+            writer.flush();
+            logIn();
         }
 
         writer.flush();

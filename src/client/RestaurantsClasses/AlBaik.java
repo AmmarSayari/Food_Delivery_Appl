@@ -12,14 +12,14 @@ public class AlBaik extends Restaurant {
         String tol = "";
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(
-                    "E:\\food_delivery_App\\src\\Al-baik menu"))));
+                    "E:\\food_delivery_App\\src\\Al-baik_menu"))));
             while ((tol = reader.readLine()) != null) {
 
                 albaikMenu.add(tol);
-                //System.out.println(albaikMenu);
+
             }
             setMenuList(albaikMenu);
-            //System.out.println(albaikMenu);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

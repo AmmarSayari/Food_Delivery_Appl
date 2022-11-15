@@ -12,3 +12,5 @@ creating list of order
 calc the total price
 -> Sender class : the work off contacting the server and the db is behind a fence
 
+
+

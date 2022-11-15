@@ -15,6 +15,8 @@ calc the total price
 ### jar file in (out) for App to start (server)
 ### to start the (cleint app) ... the App has to be on 
 
+### sql file and connecter on (lib)
+
 ![image](https://user-images.githubusercontent.com/113537572/201949991-1f56d261-8753-4667-b18a-1178ec09c28a.png)
 
 ![image](https://user-images.githubusercontent.com/113537572/201950444-25047844-c24b-47e6-8be1-ded44ec04471.png)

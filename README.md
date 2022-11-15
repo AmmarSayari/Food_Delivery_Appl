@@ -13,7 +13,9 @@ calc the total price
 -> Sender class : the work off contacting the server and the db is behind a fence
 
 ### jar file in (out) for App to start (server)
-### to start the (cleint app) ... the App has to be on 
+### another jar file (jar 2) to start the (client App)
+
+### to start the (cleint app) ... the App (server) has to be on 
 
 ### sql file and connecter on (lib)
 
